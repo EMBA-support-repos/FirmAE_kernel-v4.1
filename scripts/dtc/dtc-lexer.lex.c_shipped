@@ -630,14 +630,12 @@ char *yytext;
 #define YY_NO_INPUT 1
 
 
-
-
 #line 38 "dtc-lexer.l"
 #include "dtc.h"
 #include "srcpos.h"
 #include "dtc-parser.tab.h"
 
-YYLTYPE yylloc;
+extern YYLTYPE yylloc;
 
 /* CAUTION: this will stop working if we ever use yyless() or yyunput() */
 #define	YY_USER_ACTION \

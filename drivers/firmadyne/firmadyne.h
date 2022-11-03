@@ -7,6 +7,6 @@ extern short reboot;
 extern short procfs;
 extern short syscall;
 
-#define MODULE_NAME "firmadyne"
+#define MODULE_NAME "EMBA - firmadyne"
 
 #endif
