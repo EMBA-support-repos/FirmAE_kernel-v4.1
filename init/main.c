@@ -303,23 +303,40 @@ static int __init unknown_bootoption(char *param, char *val, const char *unused)
 				break;
 		}
 		envp_init[i] = param;
-		if (!strncmp(param, "FIRMAE_KERNEL=", val - param) &&
-				!strncmp(val, "true", 4))
-		{
-			printk("found FIRMAE_KERNEL=t\n");
-			for (i = 0; envp_init[i]; i++)
-			{
-				if (i == MAX_INIT_ENVS)
-				{
-					panic_later = "env";
-					panic_param = param;
-				}
-				if (!strncmp(envp_init[i], "LD_PRELOAD=", 11))
-					break;
-			}
-			printk("set the LD_PRELOAD=/firmadyne/libnvram_ioctl.so\n");
-			envp_init[i] = "LD_PRELOAD=/firmadyne/libnvram_ioctl.so";
-		}
+                if (!strncmp(param, "EMBA_KERNEL=", val - param) &&
+                                !strncmp(val, "true", 4))
+                {
+                        printk("EMBA KERNEL booting up\n");
+                        for (i = 0; envp_init[i]; i++)
+                        {
+                                if (i == MAX_INIT_ENVS)
+                                {
+                                        panic_later = "env";
+                                        panic_param = param;
+                                }
+                                if (!strncmp(envp_init[i], "LD_PRELOAD=", 11))
+                                        break;
+                        }
+                        printk("Set the LD_PRELOAD=/firmadyne/libnvram_ioctl.so\n");
+                        envp_init[i] = "LD_PRELOAD=/firmadyne/libnvram_ioctl.so";
+                }
+                if (!strncmp(param, "FIRMAE_KERNEL=", val - param) &&
+                                !strncmp(val, "true", 4))
+                {
+                        printk("Warning: Unsupported FIRMAE environment booting up\n");
+                        for (i = 0; envp_init[i]; i++)
+                        {
+                                if (i == MAX_INIT_ENVS)
+                                {
+                                        panic_later = "env";
+                                        panic_param = param;
+                                }
+                                if (!strncmp(envp_init[i], "LD_PRELOAD=", 11))
+                                        break;
+                        }
+                        printk("Set the LD_PRELOAD=/firmadyne/libnvram_ioctl.so\n");
+                        envp_init[i] = "LD_PRELOAD=/firmadyne/libnvram_ioctl.so";
+                }
 	} else {
 		/* Command line option */
 		unsigned int i;
