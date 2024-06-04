@@ -1,4 +1,4 @@
-/*
+  /*
  *  linux/init/main.c
  *
  *  Copyright (C) 1991, 1992  Linus Torvalds
@@ -306,7 +306,7 @@ static int __init unknown_bootoption(char *param, char *val, const char *unused)
                 if (!strncmp(param, "EMBA_KERNEL=", val - param) &&
                                 !strncmp(val, "true", 4))
                 {
-                        printk("EMBA KERNEL booting up\n");
+                        printk("EMBA environment detected and booting up\n");
                         for (i = 0; envp_init[i]; i++)
                         {
                                 if (i == MAX_INIT_ENVS)
